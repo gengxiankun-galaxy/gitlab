@@ -1,0 +1,16 @@
+gitlab:
+  container_name: gitlab
+  image: 'gitlab/gitlab-ce:11.4.0-rc6.ce.0'
+  restart: always
+  hostname: '{{ GITLAB_HOSTNAME }}'
+  environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url '{{ GITLAB_EXTERNAL_URL }}'
+      # Add any other gitlab.rb configuration here, each on its own line
+  ports:
+    - '{{ GITLAB_HTTP_PORT }}:80'
+    - '{{ GITLAB_SSH_PORT }}:22'
+  volumes:
+    - '{{ SRV_PATH }}/gitlab/config:/etc/gitlab'
+    - '{{ SRV_PATH }}/gitlab/logs:/var/log/gitlab'
+    - '{{ SRV_PATH }}/gitlab/data:/var/opt/gitlab'

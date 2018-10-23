@@ -1,0 +1,7 @@
+---
+# tasks file for gitlab
+- name: 配置相关参数
+  template: src=docker-compose.yaml.j2 dest=/tmp/docker-compose-gitlab.yaml
+
+- name: run docker-compose
+  shell: "docker-compose -f /data/script/gitlab/docker-compose-gitlab.yaml up -d"

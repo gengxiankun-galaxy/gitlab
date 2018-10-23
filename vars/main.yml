@@ -1,0 +1,12 @@
+---
+# vars file for gitlab
+
+GITLAB_HOSTNAME: 'gitlab.com'
+
+GITLAB_EXTERNAL_URL: 'https://gitlab.com'
+
+GITLAB_HTTP_PORT: 8081
+
+GITLAB_SSH_PORT: 2201
+
+SRV_PATH: '/data/srv'
