@@ -1,7 +1,12 @@
----
-# tasks file for gitlab
+- name: 清理旧数据
+  shell: 'rm -rf /opt/gengxiankun-galaxy/gitlab && docker rm -f gitlab'
+  ignore_errors: yes
+
+- name: 预处理
+  shell: '[[ ! -d "/opt/gengxiankun-galaxy/gitlab" ]] && mkdir -vp /opt/gengxiankun-galaxy/gitlab'
+
 - name: 配置相关参数
-  template: src=docker-compose.yaml.j2 dest=/tmp/docker-compose-gitlab.yaml
+  template: src=docker-compose.yaml.j2 dest=/opt/gengxiankun-galaxy/gitlab/docker-compose.yaml
 
 - name: run docker-compose
-  shell: "docker-compose -f /data/script/gitlab/docker-compose-gitlab.yaml up -d"
+  shell: "docker-compose -f /opt/gengxiankun-galaxy/gitlab/docker-compose.yaml up -d"
