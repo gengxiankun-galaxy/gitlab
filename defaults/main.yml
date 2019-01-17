@@ -1,2 +1,8 @@
 ---
 # defaults file for gitlab
+
+SRV_PATH: '/data/srv'
+GITLAB_HOSTNAME: 'example.gitlab.com'
+GITLAB_EXTERNAL_URL: 'http://example.gitlab.com'
+GITLAB_HTTP_PORT: 80
+GITLAB_SSH_PORT: 2201
