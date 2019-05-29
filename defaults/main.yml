@@ -1,6 +1,7 @@
 ---
 # defaults file for gitlab
 
+OPT_PATH: '/opt/gengxiankun-galaxy'
 SRV_PATH: '/data/srv'
 GITLAB_HOSTNAME: 'example.gitlab.com'
 GITLAB_EXTERNAL_URL: 'http://example.gitlab.com'

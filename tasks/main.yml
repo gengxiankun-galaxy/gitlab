@@ -1,12 +1,12 @@
 - name: 清理旧数据
-  shell: 'rm -rf /opt/gengxiankun-galaxy/gitlab && docker rm -f gitlab'
+  shell: 'docker-compose -f {{ OPT_PATH }}/gitlab/docker-compose.yaml rm -fsva;rm -rf {{ OPT_PATH }}/gitlab'
   ignore_errors: yes
 
 - name: 预处理
-  shell: '[[ ! -d "/opt/gengxiankun-galaxy/gitlab" ]] && mkdir -vp /opt/gengxiankun-galaxy/gitlab'
+  shell: '[[ ! -d "{{ OPT_PATH }}/gitlab" ]] && mkdir -vp {{ OPT_PATH }}/gitlab'
 
 - name: 配置相关参数
-  template: src=docker-compose.yaml.j2 dest=/opt/gengxiankun-galaxy/gitlab/docker-compose.yaml
+  template: src=docker-compose.yaml.j2 dest={{ OPT_PATH }}/gitlab/docker-compose.yaml
 
 - name: run docker-compose
-  shell: "docker-compose -f /opt/gengxiankun-galaxy/gitlab/docker-compose.yaml up -d"
+  shell: "docker-compose -f {{ OPT_PATH }}/gitlab/docker-compose.yaml up -d"
