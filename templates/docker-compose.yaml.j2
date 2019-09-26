@@ -6,11 +6,24 @@ gitlab:
   environment:
     GITLAB_OMNIBUS_CONFIG: |
       external_url '{{ GITLAB_EXTERNAL_URL }}'
-      # Add any other gitlab.rb configuration here, each on its own line
+      {% if GITLAB_REGISTRY_ENABLED == true %}
+      registry_external_url '{{ GITLAB_REGISTRY_EXTERNAL_URL }}'
+      gitlab_rails['registry_enabled'] = '{{ GITLAB_REGISTRY_ENABLED }}'
+      gitlab_rails['registry_host'] = '{{ GITLAB_REGISTRY_HOST }}'
+      gitlab_rails['registry_port'] = '{{ GITLAB_REGISTRY_PORT }}'
+      gitlab_rails['registry_path'] = '/data/srv/registry'
+      gitlab_rails['registry_api_url'] = '{{ GITLAB_REGISTRY_API_URL }}'
+      {% endif %}
   ports:
     - '{{ GITLAB_HTTP_PORT }}:80'
     - '{{ GITLAB_SSH_PORT }}:22'
+    {% if GITLAB_REGISTRY_ENABLED == true %}
+    - '{{ GITLAB_REGISTRY_PORT }}:{{ GITLAB_REGISTRY_PORT }}'
+    {% endif %}
   volumes:
     - '{{ SRV_PATH }}/gitlab/config:/etc/gitlab'
     - '{{ SRV_PATH }}/gitlab/logs:/var/log/gitlab'
     - '{{ SRV_PATH }}/gitlab/data:/var/opt/gitlab'
+    {% if GITLAB_REGISTRY_ENABLED == true %}
+    - '{{ REGISTRY_PATH }}:/data/srv/registry'
+    {% endif %}
