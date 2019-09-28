@@ -34,7 +34,21 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - gengxiankun.gitlab
+        - gengxiankun.gitlab
+      vars:
+      	OPT_PATH: '/opt/gengxiankun-galaxy'
+	    SRV_PATH: '/data/srv'
+	    GITLAB_HOSTNAME: 'gitlab.example.com'
+	    GITLAB_EXTERNAL_URL: 'http://gitlab.example.com'
+	    GITLAB_HTTP_PORT: 80
+	    GITLAB_SSH_PORT: 2222
+	    GITLAB_REGISTRY_ENABLED: true
+	    GITLAB_REGISTRY_EXTERNAL_URL: 'http://registry.example.com:5005'
+	    GITLAB_REGISTRY_HOST: 'registry.gitlab.example.com'
+	    GITLAB_REGISTRY_PORT: '5005'
+	    REGISTRY_PATH: '{{ SRV_PATH }}/registry'
+	    GITLAB_REGISTRY_API_URL: 'http://:5000'
+
 
 License
 -------
