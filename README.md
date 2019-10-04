@@ -36,7 +36,7 @@ Example Playbook
       roles:
         - gengxiankun.gitlab
       vars:
-      	OPT_PATH: '/opt/gengxiankun-galaxy'
+      	    OPT_PATH: '/opt/gengxiankun-galaxy'
 	    SRV_PATH: '/data/srv'
 	    GITLAB_HOSTNAME: 'gitlab.example.com'
 	    GITLAB_EXTERNAL_URL: 'http://gitlab.example.com'
